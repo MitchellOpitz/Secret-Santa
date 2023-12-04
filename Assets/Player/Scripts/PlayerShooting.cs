@@ -21,17 +21,23 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        if (playerInputActions.Player.Shoot.ReadValue<float>() > 0.5f)
+        float mouseButton = playerInputActions.Player.ShootMouse.ReadValue<float>();
+        Vector2 joystickDirection = playerInputActions.Player.ShootJoystick.ReadValue<Vector2>();
+
+        bool mouseButtonDown = mouseButton > 0.5f;
+        bool joystickMoved = Mathf.Abs(joystickDirection.magnitude) > 0.5f;
+
+        if (mouseButtonDown)
         {
             ShootMouse();
         }
-        else if (Mathf.Abs(playerInputActions.Player.Shoot.ReadValue<Vector2>().magnitude) > 0.5f)
+        else if (joystickMoved)
         {
-            ShootController();
+            ShootController(joystickDirection);
         }
     }
 
-    public void ShootMouse()
+    void ShootMouse()
     {
         if (Time.time > nextFireTime)
         {
@@ -41,19 +47,15 @@ public class PlayerShooting : MonoBehaviour
             Vector2 fireballDirection = (mousePosition - transform.position).normalized;
 
             Shoot(fireballDirection);
-            Debug.Log("Shooting via mouse.");
         }
     }
 
-    void ShootController()
+    void ShootController(Vector2 direction)
     {
         if (Time.time > nextFireTime)
         {
             nextFireTime = Time.time + 1f / fireRate;
-
-            Vector2 fireballDirection = playerInputActions.Player.Shoot.ReadValue<Vector2>().normalized;
-
-            Shoot(fireballDirection);
+            Shoot(direction);
         }
     }
 

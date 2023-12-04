@@ -37,10 +37,19 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""ShootJoystick"",
                     ""type"": ""Value"",
                     ""id"": ""6d4a8d09-fcd0-42b9-af5c-6f2f5d811ec2"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ShootMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""34aa619c-b83e-4e9f-aff1-612971cebc39"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -213,24 +222,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""24bd0119-8320-4546-b124-2cdade591368"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""RightStick"",
                     ""id"": ""8a9fc412-a8dc-458e-913c-e39783d5b575"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootJoystick"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -241,7 +239,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootJoystick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -252,7 +250,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootJoystick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -263,7 +261,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootJoystick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -274,19 +272,59 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""ShootJoystick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30a8d697-2a4b-416c-b67c-5b3f5bf354c2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Mouse"",
+            ""bindingGroup"": ""Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<VirtualMouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_ShootJoystick = m_Player.FindAction("ShootJoystick", throwIfNotFound: true);
+        m_Player_ShootMouse = m_Player.FindAction("ShootMouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -349,13 +387,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_ShootJoystick;
+    private readonly InputAction m_Player_ShootMouse;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @ShootJoystick => m_Wrapper.m_Player_ShootJoystick;
+        public InputAction @ShootMouse => m_Wrapper.m_Player_ShootMouse;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -368,9 +408,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Shoot.started += instance.OnShoot;
-            @Shoot.performed += instance.OnShoot;
-            @Shoot.canceled += instance.OnShoot;
+            @ShootJoystick.started += instance.OnShootJoystick;
+            @ShootJoystick.performed += instance.OnShootJoystick;
+            @ShootJoystick.canceled += instance.OnShootJoystick;
+            @ShootMouse.started += instance.OnShootMouse;
+            @ShootMouse.performed += instance.OnShootMouse;
+            @ShootMouse.canceled += instance.OnShootMouse;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -378,9 +421,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Shoot.started -= instance.OnShoot;
-            @Shoot.performed -= instance.OnShoot;
-            @Shoot.canceled -= instance.OnShoot;
+            @ShootJoystick.started -= instance.OnShootJoystick;
+            @ShootJoystick.performed -= instance.OnShootJoystick;
+            @ShootJoystick.canceled -= instance.OnShootJoystick;
+            @ShootMouse.started -= instance.OnShootMouse;
+            @ShootMouse.performed -= instance.OnShootMouse;
+            @ShootMouse.canceled -= instance.OnShootMouse;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -398,9 +444,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+    private int m_MouseSchemeIndex = -1;
+    public InputControlScheme MouseScheme
+    {
+        get
+        {
+            if (m_MouseSchemeIndex == -1) m_MouseSchemeIndex = asset.FindControlSchemeIndex("Mouse");
+            return asset.controlSchemes[m_MouseSchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
+        void OnShootJoystick(InputAction.CallbackContext context);
+        void OnShootMouse(InputAction.CallbackContext context);
     }
 }

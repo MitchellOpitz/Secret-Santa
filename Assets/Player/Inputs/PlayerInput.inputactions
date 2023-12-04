@@ -15,10 +15,19 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot",
+                    "name": "ShootJoystick",
                     "type": "Value",
                     "id": "6d4a8d09-fcd0-42b9-af5c-6f2f5d811ec2",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ShootMouse",
+                    "type": "Value",
+                    "id": "34aa619c-b83e-4e9f-aff1-612971cebc39",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -191,24 +200,13 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "24bd0119-8320-4546-b124-2cdade591368",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "RightStick",
                     "id": "8a9fc412-a8dc-458e-913c-e39783d5b575",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootJoystick",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -219,7 +217,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootJoystick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -230,7 +228,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootJoystick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -241,7 +239,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootJoystick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -252,12 +250,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "ShootJoystick",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "30a8d697-2a4b-416c-b67c-5b3f5bf354c2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<VirtualMouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
