@@ -44,7 +44,8 @@ public class PlayerShooting : MonoBehaviour
             nextFireTime = Time.time + 1f / fireRate;
 
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            Vector2 fireballDirection = (mousePosition - transform.position).normalized;
+            Vector2 fireballDirection = (mousePosition - transform.position) * 100;
+            fireballDirection = fireballDirection.normalized;
 
             Shoot(fireballDirection);
         }
@@ -55,7 +56,9 @@ public class PlayerShooting : MonoBehaviour
         if (Time.time > nextFireTime)
         {
             nextFireTime = Time.time + 1f / fireRate;
-            Shoot(direction);
+            Vector2 fireballDirection = direction * 100;
+            fireballDirection = fireballDirection.normalized;
+            Shoot(fireballDirection);
         }
     }
 

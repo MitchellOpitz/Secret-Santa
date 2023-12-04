@@ -322,9 +322,9 @@ GameObject:
   m_Component:
   - component: {fileID: 142699187}
   - component: {fileID: 142699186}
-  - component: {fileID: 142699188}
   - component: {fileID: 142699190}
   - component: {fileID: 142699189}
+  - component: {fileID: 142699188}
   - component: {fileID: 142699191}
   - component: {fileID: 142699192}
   m_Layer: 3
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 5711597393984431721, guid: 625fcbd7d31e0b24eaa1d2eccddfd9d3, type: 3}
   firePoint: {fileID: 110436298}
-  fireballSpeed: 25
+  fireballSpeed: 5
   fireRate: 1
 --- !u!114 &142699192
 MonoBehaviour:
@@ -544,6 +544,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 86e9c2e5-3b64-4833-b065-d88f526ef3b8
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6d4a8d09-fcd0-42b9-af5c-6f2f5d811ec2
+    m_ActionName: Player/ShootJoystick[/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34aa619c-b83e-4e9f-aff1-612971cebc39
+    m_ActionName: Player/ShootMouse[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
