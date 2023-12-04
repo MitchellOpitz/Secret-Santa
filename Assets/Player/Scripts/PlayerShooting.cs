@@ -9,19 +9,7 @@ public class PlayerShooting : MonoBehaviour
 
     private float nextFireTime = 0f;
 
-    void Update()
-    {
-        if (Input.GetMouseButton(0) && Time.time > nextFireTime)
-        {
-            ShootMouse();
-        }
-        else if ((Mathf.Abs(Input.GetAxis("Fire1")) > 0.1f || Mathf.Abs(Input.GetAxis("Fire2")) > 0.1f) && Time.time > nextFireTime)
-        {
-            ShootController();
-        }
-    }
-
-    void ShootMouse()
+    public void ShootMouse()
     {
         if (Time.time > nextFireTime)
         {

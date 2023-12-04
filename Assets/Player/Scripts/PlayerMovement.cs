@@ -1,14 +1,23 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
 
-    void Update()
+    private PlayerInput playerInput;
+    private PlayerInputActions playerInputActions;
+
+    private void Awake()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized;
+        playerInput = GetComponent<PlayerInput>();
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Enable();
+    }
+
+    private void Update()
+    {
+        Vector2 movement = playerInputActions.Player.Movement.ReadValue<Vector2>().normalized;
         transform.Translate(movement * speed * Time.deltaTime);
     }
 }
