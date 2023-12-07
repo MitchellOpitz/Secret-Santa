@@ -13,7 +13,7 @@ public class HealthUI : MonoBehaviour
 
     private Image[] heartsArray;
 
-    private void Start()
+    private void Awake()
     {
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
 
