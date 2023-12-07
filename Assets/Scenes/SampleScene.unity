@@ -7158,6 +7158,7 @@ GameObject:
   - component: {fileID: 1684053820}
   - component: {fileID: 1684053819}
   - component: {fileID: 1684053823}
+  - component: {fileID: 1684053824}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Crystal
@@ -7228,18 +7229,21 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
-    newSize: {x: 1, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0, y: -0.25}
-      - {x: 0.5, y: 0}
+    - - {x: 0.061587334, y: 0.50758827}
+      - {x: -0.10731888, y: 0.5134187}
+      - {x: -0.25609398, y: 0.27317482}
+      - {x: -0.09978533, y: -0.42623624}
+      - {x: 0, y: -0.48414987}
+      - {x: 0.0755887, y: -0.41854993}
+      - {x: 0.22682524, y: 0.2634185}
   m_UseDelaunayMesh: 0
 --- !u!212 &1684053821
 SpriteRenderer:
@@ -7282,12 +7286,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
+  m_Sprite: {fileID: -1746893172, guid: ddf29121ca28e5e45b277df67a6b66c1, type: 3}
   m_Color: {r: 0, g: 0.9896784, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7301,13 +7305,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684053818}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1684053823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7322,6 +7326,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHealth: 5
   portalPrefab: {fileID: 3961885442399317739, guid: f07957de2677faa448469651ac06aed1, type: 3}
+--- !u!95 &1684053824
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684053818}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08a0a35ab81d8564e9d0a3bd2b08afe5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1798229692
 GameObject:
   m_ObjectHideFlags: 0
