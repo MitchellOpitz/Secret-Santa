@@ -2521,6 +2521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 5
+  portalPrefab: {fileID: 3961885442399317739, guid: f07957de2677faa448469651ac06aed1, type: 3}
 --- !u!1 &1798229692
 GameObject:
   m_ObjectHideFlags: 0
